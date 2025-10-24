@@ -1,39 +1,19 @@
 @extends('layout')
 
 @section('content')
-<h2 class="text-xl font-semibold text-gray-800 mb-4">Ajouter un employé</h2>
-
-@if ($errors->any())
-<div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
-    <ul class="list-disc pl-5">
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+<div class="max-w-2xl mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Ajouter un employé</h2>
+    <form action="{{ route('employees.store') }}" method="POST" class="space-y-4">
+        @csrf
+        <input type="text" name="nom" placeholder="Nom" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" value="{{ old('nom') }}">
+        <input type="text" name="prenom" placeholder="Prénom" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" value="{{ old('prenom') }}">
+        <input type="email" name="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" value="{{ old('email') }}">
+        <input type="text" name="poste" placeholder="Poste" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" value="{{ old('poste') }}">
+        
+        <div class="flex justify-end space-x-2">
+            <a href="{{ route('employees.index') }}" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition">Annuler</a>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Ajouter</button>
+        </div>
+    </form>
 </div>
-@endif
-
-<form action="{{ route('employees.store') }}" method="POST" class="bg-white shadow p-6 rounded space-y-4">
-    @csrf
-    <div>
-        <label class="block text-gray-700 mb-1">Nom</label>
-        <input type="text" name="nom" value="{{ old('nom') }}" class="w-full border-gray-300 rounded px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
-    </div>
-    <div>
-        <label class="block text-gray-700 mb-1">Prénom</label>
-        <input type="text" name="prenom" value="{{ old('prenom') }}" class="w-full border-gray-300 rounded px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
-    </div>
-    <div>
-        <label class="block text-gray-700 mb-1">Email</label>
-        <input type="email" name="email" value="{{ old('email') }}" class="w-full border-gray-300 rounded px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
-    </div>
-    <div>
-        <label class="block text-gray-700 mb-1">Poste</label>
-        <input type="text" name="poste" value="{{ old('poste') }}" class="w-full border-gray-300 rounded px-3 py-2 focus:ring-blue-500 focus:border-blue-500">
-    </div>
-    <div class="flex justify-end">
-        <a href="{{ route('employees.index') }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 mr-2">Annuler</a>
-        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Ajouter</button>
-    </div>
-</form>
 @endsection

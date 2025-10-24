@@ -1,17 +1,17 @@
 @extends('layout')
 
 @section('content')
-<h2 class="text-xl font-semibold text-gray-800 mb-4">Détails de l’employé</h2>
-
-<div class="bg-white shadow p-6 rounded space-y-2">
-    <p><strong>Nom :</strong> {{ $employee->nom }}</p>
-    <p><strong>Prénom :</strong> {{ $employee->prenom }}</p>
-    <p><strong>Email :</strong> {{ $employee->email }}</p>
-    <p><strong>Poste :</strong> {{ $employee->poste }}</p>
-</div>
-
-<div class="mt-4 flex space-x-2">
-    <a href="{{ route('employees.edit', $employee) }}" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Modifier</a>
-    <a href="{{ route('employees.index') }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Retour</a>
+<div class="max-w-2xl mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Détails de l'employé</h2>
+    <div class="space-y-2">
+        <p><span class="font-semibold">Nom :</span> {{ $employee->nom }}</p>
+        <p><span class="font-semibold">Prénom :</span> {{ $employee->prenom }}</p>
+        <p><span class="font-semibold">Email :</span> {{ $employee->email }}</p>
+        <p><span class="font-semibold">Poste :</span> {{ $employee->poste }}</p>
+    </div>
+    <div class="mt-6 flex justify-end space-x-2">
+        <a href="{{ route('employees.index') }}" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition">Retour</a>
+        <a href="{{ route('employees.edit', $employee->id) }}" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Modifier</a>
+    </div>
 </div>
 @endsection
